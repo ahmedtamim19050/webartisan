@@ -114,7 +114,7 @@
                         </div>
                         <div class="service-col">
 
-                            <input type="email" id="l_name" name="l_name" placeholder="Last name" value="{{old('l_name')}}" required />
+                            <input type="text" id="l_name" name="l_name" placeholder="Last name" value="{{old('l_name')}}" required />
                             @error('l_name')
                             <span class="text-danger">
                                 {{ $message }}
