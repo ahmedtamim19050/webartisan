@@ -39,9 +39,9 @@ class CheckoutController extends Controller
       }
       public function thankyou()
       {
-            // if (!session()->has('thank')) {
-            //       return redirect('/');
-            //   }
+            if (!session()->has('thank')) {
+                  return redirect('/');
+              }
              
             return view('pages.thankyou');
       }
