@@ -1,5 +1,14 @@
 @extends('layouts.app')
 @section('content')
+@section('css')
+<style>
+    .pricing-item .amount .number .dollar{
+        position: absolute !important;
+    left: -28px !important;
+    top: -5px;
+    }
+</style>
+@endsection
 <div class="wrapper">	
 
 <!-- Section Started -->
@@ -52,7 +61,7 @@
             <div class="info-list">
                 <ul>
                     <li><strong>Age:</strong> {{ setting('about.age') }}</li>
-                    <li><strong>Residence:</strong> USA</li>
+                    <li><strong>Residence:</strong> {{ setting('about.residence') }}</li>
                     <li><strong>Freelance:</strong>
                     @if(setting('about.freelance')==1)
                     Avaiable
@@ -60,9 +69,9 @@
                     Unavailable
                     @endif
                     </li>
-                    <li><strong>Address:</strong> San Francisco</li>
-                    <li><strong>Phone:</strong> +1 256 254 84 56</li>
-                    <li><strong>E-mail:</strong> alejandroa@gmail.com</li>
+                    <li><strong>Address:</strong> {{ setting('about.address') }}</li>
+                    <li><strong>Phone:</strong> {{ setting('site.phone') }}</li>
+                    <li><strong>E-mail:</strong>{{setting('site.email')}}</li>
                 </ul>
             </div>
             <div class="bts">
@@ -119,31 +128,28 @@
 
         <!-- pricing items -->
         <div class="pricing-items">
-
-            <div class="pricing-col">
+           @foreach ($pricings as $data)
+           <div class="pricing-col">
                 <div class="pricing-item content-box">
                     <div class="icon">
-                        <span class="fas fa-star"></span>
+                        <span class="{{ $data->icon }}"></span>
                     </div>
-                    <div class="name">Basic</div>
+                    <div class="name">{{ $data->title }}</div>
                     <div class="amount">
                         <span class="number">
-                            <span class="dollar">$</span>
-                            <span>39</span>
-                            <span class="period">hour</span>
+                            <span class="dollar">BDT</span>
+            
+                            <span>{{ $data->Price }}</span>
                         </span>
                     </div>
                     <div class="feature-list">
                         <ul>
-                            <li>Web Development</li>
-                            <li>Advetising</li>
-                            <li>Game Development</li>
-                            <li class="disable">Music Writing</li>
-                            <li class="disable">Photography</li>
+                            {!!  $data->description  !!}
+                          
                         </ul>
                     </div>
                     <div class="bts">
-                        <a href="#" class="btn hover-animated">
+                        <a href="{{route('checkout',$data)}}" class="btn hover-animated">
                             <span class="circle"></span>
                             <span class="lnk">Buy Now</span>
                         </a>
@@ -151,36 +157,10 @@
                 </div>
             </div>
 
-            <div class="pricing-col">
-                <div class="pricing-item content-box">
-                    <div class="icon">
-                        <span class="fas fa-rocket"></span>
-                    </div>
-                    <div class="name">Premium</div>
-                    <div class="amount">
-                        <span class="number">
-                            <span class="dollar">$</span>
-                            <span>59</span>
-                            <span class="period">hour</span>
-                        </span>
-                    </div>
-                    <div class="feature-list">
-                        <ul>
-                            <li>Web Development</li>
-                            <li>Advetising</li>
-                            <li>Game Development</li>
-                            <li>Music Writing</li>
-                            <li>Photography <strong>new</strong></li>
-                        </ul>
-                    </div>
-                    <div class="bts">
-                        <a href="#" class="btn hover-animated">
-                            <span class="circle"></span>
-                            <span class="lnk">Buy Now</span>
-                        </a>
-                    </div>
-                </div>
-            </div>
+           @endforeach
+        
+      
+           
 
         </div>
 

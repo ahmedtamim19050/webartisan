@@ -22,6 +22,7 @@
 	<link rel="stylesheet" href="{{asset('assets/css/fontawesome.css')}}" />
 	<link rel="stylesheet" href="{{asset('assets/css/brands.css')}}" />
 	<link rel="stylesheet" href="{{asset('assets/css/solid.css')}}" />
+    @yield('css')
 		
 
 
